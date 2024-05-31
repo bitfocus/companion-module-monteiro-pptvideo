@@ -1,6 +1,6 @@
 const { InstanceBase, Regex, runEntrypoint } = require('@companion-module/base')
 const getPresetDefinitions = require('./presets')
-const UpgradeScripts = require('./upgrades')
+
 
 class OSCInstance extends InstanceBase {
 	constructor(internal) {
@@ -208,4 +208,4 @@ class OSCInstance extends InstanceBase {
 
 }
 
-runEntrypoint(OSCInstance, UpgradeScripts)
+runEntrypoint(OSCInstance, [])
