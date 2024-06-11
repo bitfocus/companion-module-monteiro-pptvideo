@@ -21,9 +21,9 @@ class GenericTcpUdpInstance extends InstanceBase {
 
 		this.config = config
 
-		if (this.config.prot == 'tcp') {
-			this.init_tcp()
-		}
+		
+		this.init_tcp()
+		
 	}
 
 	async destroy() {
