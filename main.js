@@ -7,9 +7,9 @@ class GenericTcpUdpInstance extends InstanceBase {
 	async init(config) {
 		this.config = config
 
+
 		this.setActionDefinitions(getActionDefinitions(this))
 		this.setPresetDefinitions(getPresetDefinitions())
-
 		await this.configUpdated(config)
 	}
 
@@ -20,10 +20,7 @@ class GenericTcpUdpInstance extends InstanceBase {
 		}
 
 		this.config = config
-
-		
 		this.init_tcp()
-		
 	}
 
 	async destroy() {
