@@ -54,8 +54,8 @@ export function getActionDefinitions(self) {
 		ESC: 'esc',
 		NEXT: 'next',
 		PREVIOUS: 'previous',
-		FECHAR_PPT: 'pptexit',
-		FECHAR_VIDEO: 'videoexit',
+		EXIT_PPT: 'pptexit',
+		EXIT_VIDEO: 'videoexit',
 	}
 
 	for (const [name, command] of Object.entries(simpleCommands)) {
