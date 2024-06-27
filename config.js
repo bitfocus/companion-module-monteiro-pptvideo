@@ -10,7 +10,6 @@ export const ConfigFields = [
 		label: 'Information',
 		width: 12,
 		value: `
-				<div class="alert alert-danger">
 					<h3>IMPORTANT MESSAGE</h3>
 					<div>
 						<strong>Please read and understand the following before using this module</strong>
@@ -18,7 +17,6 @@ export const ConfigFields = [
 						This software aims to use the companion feature to use more than one computer on the network and be able to control the opening of video and ppt simultaneously.<p>
             
 					</div>
-				</div>
 			`,
 	},
 	{
