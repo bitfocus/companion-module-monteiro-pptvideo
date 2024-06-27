@@ -77,7 +77,7 @@ export function getPresetDefinitions() {
 				{
 					down: [
 						{
-							actionId: 'FECHAR_PPT',
+							actionId: 'EXIT_PPT',
 						},
 					],
 					up: [],
@@ -98,7 +98,7 @@ export function getPresetDefinitions() {
 				{
 					down: [
 						{
-							actionId: 'FECHAR_VIDEO',
+							actionId: 'EXIT_VIDEO',
 						},
 					],
 					up: [],
