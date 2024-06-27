@@ -1,2 +1,4 @@
 ## PPT VIDEO TCP
-This software aims to use the companion feature to use more than one computer on the network and be able to control the opening of video and ppt simultaneously
+The function of this software is to facilitate the opening and closing of PowerPoint and videos.
+I created a software that facilitates the opening and closing of PowerPoint and videos on more than one machine simultaneously. On the website below you can download and test the ppt-video software and even the others.
+https://monteiroaudiovisua.wixsite.com/ppt-video
