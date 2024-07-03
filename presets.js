@@ -9,6 +9,7 @@ export function getPresetDefinitions() {
 				size: '18',
 				color: '16777215',
 				bgcolor: '0',
+				show_topbar: false
 			},
 			steps: [
 				{
@@ -30,6 +31,7 @@ export function getPresetDefinitions() {
 				size: '14',
 				color: '16777215',
 				bgcolor: '25600',
+				show_topbar: false
 			},
 			steps: [
 				{
@@ -51,6 +53,7 @@ export function getPresetDefinitions() {
 				size: '14',
 				color: '16777215',
 				bgcolor: '9109504',
+				show_topbar: false
 			},
 			steps: [
 				{
@@ -72,6 +75,7 @@ export function getPresetDefinitions() {
 				size: '18',
 				color: '16777215',
 				bgcolor: '0',
+				show_topbar: false
 			},
 			steps: [
 				{
@@ -93,6 +97,7 @@ export function getPresetDefinitions() {
 				size: '18',
 				color: '16777215',
 				bgcolor: '0',
+				show_topbar: false
 			},
 			steps: [
 				{
@@ -104,12 +109,12 @@ export function getPresetDefinitions() {
 					up: [],
 				},
 			],
-		},
+		}
 	}
 
-	// Generate PPT command presets
 	for (let i = 1; i <= 20; i++) {
-		const pptCommand = i < 10 ? `ppt\n0${i}` : `ppt\n${i}`
+		const pptCommand = i < 10 ? `PPT\n0${i}` : `PPT\n${i}`;
+		const pptText = i < 10 ? `ppt0${i}` : `ppt${i}`;
 		presets[`preset_${pptCommand}`] = {
 			type: 'button',
 			category: 'PPT',
@@ -119,26 +124,24 @@ export function getPresetDefinitions() {
 				size: '18',
 				color: '16777215',
 				bgcolor: '139',
+				show_topbar: false
 			},
 			steps: [
 				{
 					down: [
 						{
-							actionId: 'send',
-							options: {
-								id_send: pptCommand,
-							},
+							actionId: pptText.toUpperCase(),
 						},
 					],
 					up: [],
 				},
 			],
-		}
+		};
 	}
 
-	// Generate VIDEO command presets
 	for (let i = 1; i <= 10; i++) {
-		const videoCommand = i < 10 ? `video\n0${i}` : `video\n${i}`
+		const videoCommand = i < 10 ? `VIDEO\n0${i}` : `VIDEO\n${i}`;
+		const videoText = i < 10 ? `video0${i}` : `video${i}`;
 		presets[`preset_${videoCommand}`] = {
 			type: 'button',
 			category: 'VIDEO',
@@ -148,22 +151,20 @@ export function getPresetDefinitions() {
 				size: '18',
 				color: '16777215',
 				bgcolor: '25600',
+				show_topbar: false
 			},
 			steps: [
 				{
 					down: [
 						{
-							actionId: 'send',
-							options: {
-								id_send: videoCommand,
-							},
+							actionId: videoText.toUpperCase(),
 						},
 					],
 					up: [],
 				},
 			],
-		}
+		};
 	}
 
-	return presets
+	return presets;
 }
