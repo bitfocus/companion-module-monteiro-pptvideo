@@ -1,2 +1,2 @@
-# companion-module-irisdown-countdowntimer
+# PPT-VIDEO
 See HELP.md and LICENSE
