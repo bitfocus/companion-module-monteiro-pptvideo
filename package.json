@@ -1,4 +1,16 @@
 {
+	"name": "ppt-video",
+	"version": "1.0.0",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-monteiro-pptvideoosc.git"
+	},
 	"dependencies": {
 		"@companion-module/base": "~1.7.1"
 	},
