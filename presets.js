@@ -66,10 +66,10 @@ export function getPresetDefinitions() {
 				},
 			],
 		},
-		preset_fechar_ppt: {
+		preset_exit_ppt: {
 			type: 'button',
 			category: 'PPT',
-			name: 'Send FECHAR_PPT Command',
+			name: 'Send exit ppt Command',
 			style: {
 				text: 'PPT\nEXIT',
 				size: '18',
@@ -88,10 +88,10 @@ export function getPresetDefinitions() {
 				},
 			],
 		},
-		preset_fechar_video: {
+		preset_exit_video: {
 			type: 'button',
 			category: 'VIDEO',
-			name: 'Send FECHAR_VIDEO Command',
+			name: 'Send exit video Command',
 			style: {
 				text: 'VIDEO EXIT',
 				size: '18',
