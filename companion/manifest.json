@@ -3,7 +3,7 @@
 	"name": "PPT-VIDEO",
 	"shortname": "PPT/VIDEO",
 	"description": "This software aims to use the companion feature to use more than one computer on the network and be able to control the opening of video and ppt simultaneously.",
-	"version": "1.0.0",
+	"version": "0.0.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-monteiro-pptvideoosc.git",
 	"bugs": "https://github.com/bitfocus/companion-module-monteiro-pptvideoosc/issues",
@@ -24,5 +24,5 @@
 	"products": [
 		"PPT-VIDEO-TCP"
 	],
-	"keywords": []
+	"keywords": ["PPT", "PPTX", "PowerPoint"]
 }
