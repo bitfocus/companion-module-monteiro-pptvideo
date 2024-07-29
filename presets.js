@@ -3,7 +3,7 @@ export function getPresetDefinitions() {
 		preset_esc: {
 			type: 'button',
 			category: 'PPT',
-			name: 'Send ESC Command',
+			name: 'close ppt presentation mode',
 			style: {
 				text: 'ESC',
 				size: '18',
@@ -25,7 +25,7 @@ export function getPresetDefinitions() {
 		preset_next: {
 			type: 'button',
 			category: 'PPT',
-			name: 'Send NEXT Command',
+			name: 'Send NEXT slide',
 			style: {
 				text: '>\nNext',
 				size: '14',
@@ -47,7 +47,7 @@ export function getPresetDefinitions() {
 		preset_previous: {
 			type: 'button',
 			category: 'PPT',
-			name: 'Send PREVIOUS Command',
+			name: 'Send PREVIOUS slide',
 			style: {
 				text: '<\nPrevious',
 				size: '14',
@@ -69,7 +69,7 @@ export function getPresetDefinitions() {
 		preset_exit_ppt: {
 			type: 'button',
 			category: 'PPT',
-			name: 'Send exit ppt Command',
+			name: 'Exit ppt',
 			style: {
 				text: 'PPT\nEXIT',
 				size: '18',
@@ -91,7 +91,7 @@ export function getPresetDefinitions() {
 		preset_exit_video: {
 			type: 'button',
 			category: 'VIDEO',
-			name: 'Send exit video Command',
+			name: 'exit video',
 			style: {
 				text: 'VIDEO EXIT',
 				size: '18',
