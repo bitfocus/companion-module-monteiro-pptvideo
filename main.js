@@ -7,7 +7,6 @@ class PptVideo extends InstanceBase {
 	async init(config) {
 		this.config = config
 
-
 		this.setActionDefinitions(getActionDefinitions(this))
 		this.setPresetDefinitions(getPresetDefinitions())
 		await this.configUpdated(config)
@@ -54,7 +53,6 @@ class PptVideo extends InstanceBase {
 			this.updateStatus(InstanceStatus.BadConfig)
 		}
 	}
-
 }
 
 runEntrypoint(PptVideo, [])
