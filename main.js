@@ -3,7 +3,7 @@ import { ConfigFields } from './config.js'
 import { getActionDefinitions } from './actions.js'
 import { getPresetDefinitions } from './presets.js'
 
-class PptVideoTcp extends InstanceBase {
+class PptVideo extends InstanceBase {
 	async init(config) {
 		this.config = config
 
@@ -57,4 +57,4 @@ class PptVideoTcp extends InstanceBase {
 
 }
 
-runEntrypoint(PptVideoTcp, [])
+runEntrypoint(PptVideo, [])
