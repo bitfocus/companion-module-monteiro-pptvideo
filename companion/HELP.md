@@ -13,3 +13,6 @@ in addition to being able to open the PPT, we have the video system that works t
 exit video - it ends the video.
 
 and the preset video01 to video10, it gives the possibility of opening the videos contained within the software
+
+Here is the link to download the software:
+https://e0b8712b-5fe8-4da4-a56f-88241001bc6a.filesusr.com/archives/fe5632_bdc75564229040dd819e225b6038576f.rar?dn=PPT%20VIDEO.rar
