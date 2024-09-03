@@ -6,6 +6,10 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-monteiro-pptvideo.git"
+	},
 	"license": "MIT",
 	"dependencies": {
 		"@companion-module/base": "~1.7.1"
