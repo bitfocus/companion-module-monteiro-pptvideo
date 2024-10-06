@@ -44,6 +44,9 @@ class PptVideo extends InstanceBase {
 
 		if (this.config.host) {
 			this.socket = new TCPHelper(this.config.host, this.config.port)
+			this.socket.on('status_change', (status, message) => {
+				this.updateStatus(status, message)
+			})
 
 			this.socket.on('error', (err) => {
 				this.updateStatus(InstanceStatus.ConnectionFailure, err.message)
