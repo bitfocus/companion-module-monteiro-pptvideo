@@ -109,7 +109,97 @@ export function getPresetDefinitions() {
 					up: [],
 				},
 			],
-		}
+		},
+		preset_hour: {
+            type: 'button',
+            category: 'Display',
+            name: 'HOUR',
+            style: {
+                text: '$(PPT_VIDEO:timer_hours)',
+                size: 'AUTO',
+                color: '16777215',
+                bgcolor: '9109504',
+                show_topbar: false
+            },
+            steps: [
+                {
+                    down: [],
+                    up: [],
+                },
+            ],
+        },
+        preset_minute: {
+            type: 'button',
+            category: 'Display',
+            name: 'MINUTE',
+            style: {
+                text: '$(PPT_VIDEO:timer_minutes)',
+                size: 'AUTO',
+                color: '16777215',
+                bgcolor: '9109504',
+                show_topbar: false
+            },
+            steps: [
+                {
+                    down: [],
+                    up: [],
+                },
+            ],
+        },
+        preset_second: {
+            type: 'button',
+            category: 'Display',
+            name: 'SECOND',
+            style: {
+                text: '$(PPT_VIDEO:timer_seconds)',
+                size: 'AUTO',
+                color: '16777215',
+                bgcolor: '9109504',
+                show_topbar: false
+            },
+            steps: [
+                {
+                    down: [],
+                    up: [],
+                },
+            ],
+        },
+        preset_timer: {
+            type: 'button',
+            category: 'Display',
+            name: 'TIMER',
+            style: {
+                text: '$(PPT_VIDEO:timer)',
+                size: 'AUTO',
+                color: '16777215',
+                bgcolor: '9109504',
+                show_topbar: false
+            },
+            steps: [
+                {
+                    down: [],
+                    up: [],
+                },
+            ],
+        },
+		preset_slide: {
+            type: 'button',
+            category: 'Display',
+            name: 'SLIDE',
+            style: {
+                text: '$(PPT_VIDEO:slide_info)',
+                size: 'AUTO',
+                color: '16777215',
+                bgcolor: '9109504',
+                show_topbar: false
+            },
+            steps: [
+                {
+                    down: [],
+                    up: [],
+                },
+            ],
+        },
 	}
 
 	for (let i = 1; i <= 20; i++) {
