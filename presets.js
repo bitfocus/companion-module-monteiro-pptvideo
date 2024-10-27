@@ -109,7 +109,6 @@ export function getPresetDefinitions() {
 					up: [],
 				},
 			],
-		}
 		},
 		preset_hour: {
             type: 'button',
@@ -229,6 +228,7 @@ export function getPresetDefinitions() {
 			],
 		};
 	}
+
 	for (let i = 1; i <= 10; i++) {
 		const videoCommand = i < 10 ? `VIDEO\n0${i}` : `VIDEO\n${i}`;
 		const videoText = i < 10 ? `video0${i}` : `video${i}`;
@@ -255,5 +255,6 @@ export function getPresetDefinitions() {
 			],
 		};
 	}
+
 	return presets;
 }
