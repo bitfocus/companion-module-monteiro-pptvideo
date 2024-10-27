@@ -3,10 +3,9 @@ import { ConfigFields } from './config.js'
 import { getActionDefinitions } from './actions.js'
 import { getPresetDefinitions } from './presets.js'
 
-class PptVideoTcp extends InstanceBase {
+class PptVideo extends InstanceBase {
 	async init(config) {
 		this.config = config
-
 
 		this.setActionDefinitions(getActionDefinitions(this))
 		this.setPresetDefinitions(getPresetDefinitions())
@@ -45,7 +44,6 @@ class PptVideoTcp extends InstanceBase {
 
 		if (this.config.host) {
 			this.socket = new TCPHelper(this.config.host, this.config.port)
-
 			this.socket.on('status_change', (status, message) => {
 				this.updateStatus(status, message)
 			})
@@ -58,7 +56,6 @@ class PptVideoTcp extends InstanceBase {
 			this.updateStatus(InstanceStatus.BadConfig)
 		}
 	}
-
 }
 
-runEntrypoint(PptVideoTcp, [])
+runEntrypoint(PptVideo, [])

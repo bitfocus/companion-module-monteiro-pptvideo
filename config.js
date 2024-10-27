@@ -9,7 +9,7 @@ export const ConfigFields = [
 		id: 'info',
 		label: 'Information', 
 		width: 12,
-		value: 'I put the download link in the Help folder, but for information purposes. This module consists of enabling PowerPoint and video control through buttons. Facilitating the manipulation of more than one presentation, you can control it on more than one computer using the software and the companion, being able to open, close, advance and other functions on more than one computer simultaneously.'
+		value: 'This module allows you to control PowerPoint and video through the "Monteiro PPT Video" program. Facilitating the manipulation of more than one presentation, you can control it on more than one computer using the software and the companion, being able to open, close, advance and other functions on more than one computer simultaneously.'
 	},
 	{
 		type: 'textinput',
@@ -27,7 +27,4 @@ export const ConfigFields = [
 		width: 4,
 		regex: Regex.PORT,
 	},
-
-
-
 ]
