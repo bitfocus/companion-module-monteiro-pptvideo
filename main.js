@@ -46,7 +46,6 @@ class PptVideo extends InstanceBase {
 
 		if (this.config.host) {
 			this.socket = new TCPHelper(this.config.host, this.config.port)
-
 			this.socket.on('status_change', (status, message) => {
 				this.updateStatus(status, message)
 			})
@@ -83,35 +82,19 @@ class PptVideo extends InstanceBase {
 			this.updateStatus(InstanceStatus.BadConfig);
 		}
 	}
-	
-	init_tcp_variables() {
-		const variables = [
-			{ name: 'Timer', variableId: 'timer' },
-			{ name: 'Timer Hours', variableId: 'timer_hours' },
-			{ name: 'Timer Minutes', variableId: 'timer_minutes' },
-			{ name: 'Timer Seconds', variableId: 'timer_seconds' },
-			{ name: 'Slide Info', variableId: 'slide_info' },
+  init_tcp_variables() {
+      const variables = [
+        { name: 'Timer', variableId: 'timer' },
+        { name: 'Timer Hours', variableId: 'timer_hours' },
+        { name: 'Timer Minutes', variableId: 'timer_minutes' },
+        { name: 'Timer Seconds', variableId: 'timer_seconds' },
+        { name: 'Slide Info', variableId: 'slide_info' }, // Nova variável adicionada
 
-		];
+      ];
 
-		this.setVariableDefinitions(variables);
+      this.setVariableDefinitions(variables);
 
-		const now = new Date();
-		const hours = now.getHours().toString().padStart(2, '0');
-		const minutes = now.getMinutes().toString().padStart(2, '0');
-		const seconds = now.getSeconds().toString().padStart(2, '0');
-
-		const initialValues = {
-			timer: `${hours}:${minutes}:${seconds}`,
-			timer_hours: hours,
-			timer_minutes: minutes,
-			timer_seconds: seconds,
-			slide_info: '0',
-		};
-
-		this.setVariableValues(initialValues);
-	}
-
+    }
 }
 
 runEntrypoint(PptVideo, [])
