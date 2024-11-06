@@ -21,8 +21,6 @@
 	},
 	"legacyIds": [],
 	"manufacturer": "Monteiro",
-	"products": [
-		"PPT-VIDEO"
-	],
+	"products": ["PPT-VIDEO"],
 	"keywords": ["PPT", "PPTX", "PowerPoint"]
 }

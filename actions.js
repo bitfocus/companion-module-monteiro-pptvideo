@@ -1,5 +1,4 @@
 export function getActionDefinitions(self) {
-
 	const actions = {}
 
 	const createSimpleCommandAction = (name, command) => ({
@@ -21,13 +20,13 @@ export function getActionDefinitions(self) {
 	}
 
 	for (let i = 1; i <= 20; i++) {
-		const pptCommand = `PPT${i.toString().padStart(2, '0')}`;
-		simpleCommands[pptCommand] = pptCommand.toLowerCase();
+		const pptCommand = `PPT${i.toString().padStart(2, '0')}`
+		simpleCommands[pptCommand] = pptCommand.toLowerCase()
 	}
 
 	for (let i = 1; i <= 10; i++) {
-		const videoCommand = `VIDEO${i.toString().padStart(2, '0')}`;
-		simpleCommands[videoCommand] = videoCommand.toLowerCase();
+		const videoCommand = `VIDEO${i.toString().padStart(2, '0')}`
+		simpleCommands[videoCommand] = videoCommand.toLowerCase()
 	}
 
 	for (const [name, command] of Object.entries(simpleCommands)) {

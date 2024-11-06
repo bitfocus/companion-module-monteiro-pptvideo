@@ -7,9 +7,10 @@ export const ConfigFields = [
 	{
 		type: 'static-text',
 		id: 'info',
-		label: 'Information', 
+		label: 'Information',
 		width: 12,
-		value: 'This module allows you to control PowerPoint and video through the "Monteiro PPT Video" program. Facilitating the manipulation of more than one presentation, you can control it on more than one computer using the software and the companion, being able to open, close, advance and other functions on more than one computer simultaneously.'
+		value:
+			'This module allows you to control PowerPoint and video through the "Monteiro PPT Video" program. Facilitating the manipulation of more than one presentation, you can control it on more than one computer using the software and the companion, being able to open, close, advance and other functions on more than one computer simultaneously.',
 	},
 	{
 		type: 'textinput',
