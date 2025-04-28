@@ -19,12 +19,12 @@ export function getActionDefinitions(self) {
 		EXIT_VIDEO: 'videoexit',
 	}
 
-	for (let i = 1; i <= 20; i++) {
+	for (let i = 1; i <= 40; i++) {
 		const pptCommand = `PPT${i.toString().padStart(2, '0')}`
 		simpleCommands[pptCommand] = pptCommand.toLowerCase()
 	}
 
-	for (let i = 1; i <= 10; i++) {
+	for (let i = 1; i <= 20; i++) {
 		const videoCommand = `VIDEO${i.toString().padStart(2, '0')}`
 		simpleCommands[videoCommand] = videoCommand.toLowerCase()
 	}
