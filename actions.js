@@ -13,7 +13,6 @@ export function getActionDefinitions(self) {
 
 	const simpleCommands = {
 		ESC: 'esc',
-		PAUSE: 'pause',
 		NEXT: 'next',
 		PREVIOUS: 'previous',
 		EXIT_PPT: 'pptexit',
