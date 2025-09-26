@@ -26,6 +26,7 @@ export function getPresetDefinitions() {
     // Presets básicos de comando ESC, NEXT, PREVIOUS, EXIT_PPT
     const commandPresets = [
         { id: 'esc', name: 'Send ESC Command', text: 'ESC', color: '16777215', bgcolor: '0', actionId: 'ESC' },
+        { id: 'pause', name: 'Send PAUSE Command', text: 'PAUSE', color: '16777215', bgcolor: '0', actionId: 'PAUSE' },
         { id: 'next', name: 'Send NEXT Command', text: '>\nNext', color: '16777215', bgcolor: '25600', actionId: 'NEXT' },
         { id: 'previous', name: 'Send PREVIOUS Command', text: '<\nPrevious', color: '16777215', bgcolor: '9109504', actionId: 'PREVIOUS' },
         { id: 'exit_ppt', name: 'Send exit PPT Command', text: 'PPT\nEXIT', color: '16777215', bgcolor: '0', actionId: 'EXIT_PPT' }

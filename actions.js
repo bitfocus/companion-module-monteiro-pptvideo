@@ -17,6 +17,7 @@ export function getActionDefinitions(self) {
 		PREVIOUS: 'previous',
 		EXIT_PPT: 'pptexit',
 		EXIT_VIDEO: 'videoexit',
+		PAUSE: 'pause',
 	}
 
 	for (let i = 1; i <= 40; i++) {
