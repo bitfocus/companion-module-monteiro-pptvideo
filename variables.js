@@ -6,6 +6,9 @@ export function getVariableDefinitions() {
 		{ name: 'Timer Minutes', variableId: 'timer_minutes' },
 		{ name: 'Timer Seconds', variableId: 'timer_seconds' },
 		{ name: 'Slide Info', variableId: 'slide_info' },
+		{ name: 'Remaining Slide Info', variableId: 'remaining_slide_info' },
+		{ name: 'Freeze State', variableId: 'freeze_state' },
+
 	]
 
 	// Variáveis para nomes de PPT (01–40)
