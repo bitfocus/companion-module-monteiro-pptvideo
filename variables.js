@@ -8,6 +8,8 @@ export function getVariableDefinitions() {
 		{ name: 'Slide Info', variableId: 'slide_info' },
 		{ name: 'Remaining Slide Info', variableId: 'remaining_slide_info' },
 		{ name: 'Freeze State', variableId: 'freeze_state' },
+		{ name: 'Active File', variableId: 'active_file' },
+		{ name: 'Next File', variableId: 'next_file' },
 
 	]
 

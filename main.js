@@ -151,6 +151,25 @@ class PptVideoTcp extends InstanceBase {
                 this.log('info', `Received freeze state: ${freezeState}`)
             }
 
+            // ----------------------------------------------
+            //  ACTIVE PPT / VIDEO
+            // ----------------------------------------------
+            const activeFile = params.get('active_file')
+            if (activeFile !== null) {
+                this.setVariableValues({ active_file: activeFile })
+                this.checkFeedbacks()
+                this.log('info', `Active file: ${activeFile}`)
+            }
+
+            // ----------------------------------------------
+            //  NEXT FILE (próximo PPT ou VIDEO)
+            // ----------------------------------------------
+            const nextFile = params.get('next_file')
+            if (nextFile !== null) {
+                this.setVariableValues({ next_file: nextFile })
+                this.checkFeedbacks()
+                this.log('info', `Next file: ${nextFile}`)
+            }
 
 
             // ------------------------------

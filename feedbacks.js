@@ -127,5 +127,48 @@
 				color: 0xffffff,   // Texto branco
 			},
 		},
+
+		file_active: {
+			type: 'boolean',
+			options: [
+				{
+					type: 'textinput',
+					id: 'id',
+					label: 'ID do arquivo (pptXX ou videoXX)',
+					default: ''
+				}
+			],
+			callback: (feedback) => {
+				const active = String(self.getVariableValue('active_file') || '').toLowerCase()
+				const id = String(feedback.options.id || '').toLowerCase()
+				return active === id
+			},
+			style: {
+				// este style será sobrescrito por presets específicos (abaixo)
+			}
+		},
+
+		next_file_active: {
+			type: 'boolean',
+			options: [
+				{
+					type: 'textinput',
+					id: 'id',
+					label: 'ID do arquivo (pptXX ou videoXX)',
+					default: '',
+				},
+			],
+			callback: (feedback) => {
+				const next = String(self.getVariableValue('next_file') || '').toLowerCase()
+				const id = String(feedback.options.id || '').toLowerCase()
+				return next === id
+			},
+			style: {
+				bgcolor: 0xff0000, // vermelho
+				color: 0xffffff,
+			},
+		},
+
+
 	}
 }
