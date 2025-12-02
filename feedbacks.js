@@ -1,12 +1,12 @@
-﻿export function getFeedbackDefinitions(self) {
+export function getFeedbackDefinitions(self) {
 
 	// -----------------------------------------
-	// Função para interpretar slide_info
+	// Function to interpret slide_info
 	// -----------------------------------------
 	function parseSlideInfo() {
 		let raw = String(self.getVariableValue('slide_info') || '')
 
-		if (raw.toLowerCase().includes('fechado')) {
+		if (raw.toLowerCase().includes('fechado')) { // "fechado" = "closed"
 			return { current: null, total: null, remaining: null, closed: true }
 		}
 
@@ -31,7 +31,7 @@
 	return {
 
 		// -------------------------------------------------
-		// FEEDBACKS DE TEMPO
+		// TIMER FEEDBACKS
 		// -------------------------------------------------
 
 		timer_green: {
@@ -68,7 +68,7 @@
 		},
 
 		// -------------------------------------------------
-		// FEEDBACKS DE SLIDES
+		// SLIDE FEEDBACKS
 		// -------------------------------------------------
 		slide_green: {
 			type: 'boolean',
@@ -99,7 +99,7 @@
 
 
 		// -------------------------------------------------
-        // FEEDBACK PARA O ESTADO "FREEZE"
+        // FEEDBACK FOR "FREEZE" STATE
         // -------------------------------------------------
         freeze_state: {
 			type: 'boolean',
@@ -108,13 +108,13 @@
 				return freezeState === 'freeze'
 			},
 			style: {
-				bgcolor: 0x3EE6DB, // Azul
-				color: 0xffffff,   // Texto branco
+				bgcolor: 0x3EE6DB, // Blue
+				color: 0xffffff,   // White text
 			},
 		},
 
 		// -------------------------------------------------
-		// FEEDBACK PARA O ESTADO "UNFREEZE"
+		// FEEDBACK FOR "UNFREEZE" STATE
 		// -------------------------------------------------
 		unfreeze_state: {
 			type: 'boolean',
@@ -123,8 +123,8 @@
 				return freezeState === 'unfreeze'
 			},
 			style: {
-				bgcolor: 0xff0000, // Vermelho
-				color: 0xffffff,   // Texto branco
+				bgcolor: 0xff0000, // Red
+				color: 0xffffff,   // White text
 			},
 		},
 
@@ -134,7 +134,7 @@
 				{
 					type: 'textinput',
 					id: 'id',
-					label: 'ID do arquivo (pptXX ou videoXX)',
+					label: 'File ID (pptXX or videoXX)',
 					default: ''
 				}
 			],
@@ -144,7 +144,7 @@
 				return active === id
 			},
 			style: {
-				// este style será sobrescrito por presets específicos (abaixo)
+				// this style will be overridden by specific presets (below)
 			}
 		},
 
@@ -154,7 +154,7 @@
 				{
 					type: 'textinput',
 					id: 'id',
-					label: 'ID do arquivo (pptXX ou videoXX)',
+					label: 'File ID (pptXX or videoXX)',
 					default: '',
 				},
 			],
@@ -164,7 +164,7 @@
 				return next === id
 			},
 			style: {
-				bgcolor: 0xff0000, // vermelho
+				bgcolor: 0xff0000, // red
 				color: 0xffffff,
 			},
 		},
