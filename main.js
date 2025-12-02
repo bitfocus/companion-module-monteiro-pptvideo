@@ -14,7 +14,7 @@ class PptVideoTcp extends InstanceBase {
         this.setFeedbackDefinitions(getFeedbackDefinitions(this))
         this.setVariableDefinitions(getVariableDefinitions())
 
-        // 🔹 Valores iniciais (para não aparecer $NA)
+        // 🔹 Initial values (so $NA does not appear)
         this.init_module_variables()
 
         await this.configUpdated(config)
@@ -43,7 +43,7 @@ class PptVideoTcp extends InstanceBase {
     }
     init_module_variables() {
         const initialValues = {
-            // TIMER zerado
+            // TIMER reset
             timer: 'TIMER',
             timer_hours: 'HOUR',
             timer_minutes: 'MIN',
@@ -51,7 +51,7 @@ class PptVideoTcp extends InstanceBase {
 
             // SLIDES
             slide_info: 'SLIDES',
-            remaining_slide_info: 'RESTANTES',
+            remaining_slide_info: 'REMAINING',
             freeze_state: 'FREEZE',
         }
 
@@ -80,15 +80,9 @@ class PptVideoTcp extends InstanceBase {
             this.updateStatus(status, message)
         })
 
-        // Processamento dos dados recebidos via TCP
         this.socket.on('data', (data) => {
             const message = data.toString('utf8')
             const params = new URLSearchParams(message)
-
-            // ------------------------------
-            // 1) TIMER
-            // ------------------------------
-
 
             const hours = params.get('hours')
             const minutes = params.get('minutes')
@@ -100,23 +94,16 @@ class PptVideoTcp extends InstanceBase {
                 const min = String(minutes).padStart(2, '0')
                 const sec = String(seconds).padStart(2, '0')
 
-                // Atualiza as variáveis do temporizador
                 this.setVariableValues({
                     timer_hours: hr,
                     timer_minutes: min,
                     timer_seconds: sec,
-                    timer: `${hr}:${min}:${sec}`,  // Formato como "HH:MM:SS"
+                    timer: `${hr}:${min}:${sec}`,
                 })
 
-                // Necessário para o feedback do TIMER funcionar
                 this.checkFeedbacks()
-
-                this.log('info', `Received time: ${hr}:${min}:${sec}`)
             }
 
-            // ------------------------------
-            // 2) SLIDE INFO
-            // ------------------------------
             let slideInfo = params.get('slide_info')
 
             if (slideInfo !== null) {
@@ -124,12 +111,8 @@ class PptVideoTcp extends InstanceBase {
 
                 this.setVariableValues({ slide_info: slideInfo })
                 this.checkFeedbacks()
-                this.log('info', `Received slide info: ${slideInfo}`)
             }
 
-            // ------------------------------
-            // 3) SLIDE REMAINING INFO  ✅ ADICIONADO
-            // ------------------------------
             let remainingInfo = params.get('remaining_slide_info')
 
             if (remainingInfo !== null) {
@@ -138,46 +121,29 @@ class PptVideoTcp extends InstanceBase {
                 })
 
                 this.checkFeedbacks()
-                this.log('info', `Received remaining slides: ${remainingInfo}`)
             }
-            // ------------------------------
-            // 4) FREEZE STATE  🔥 NOVO
-            // ------------------------------
+
             const freezeState = params.get('freeze_state')
 
             if (freezeState !== null) {
                 this.setVariableValues({ freeze_state: freezeState })
                 this.checkFeedbacks()
-                this.log('info', `Received freeze state: ${freezeState}`)
             }
 
-            // ----------------------------------------------
-            //  ACTIVE PPT / VIDEO
-            // ----------------------------------------------
             const activeFile = params.get('active_file')
             if (activeFile !== null) {
                 this.setVariableValues({ active_file: activeFile })
                 this.checkFeedbacks()
-                this.log('info', `Active file: ${activeFile}`)
             }
 
-            // ----------------------------------------------
-            //  NEXT FILE (próximo PPT ou VIDEO)
-            // ----------------------------------------------
             const nextFile = params.get('next_file')
             if (nextFile !== null) {
                 this.setVariableValues({ next_file: nextFile })
                 this.checkFeedbacks()
-                this.log('info', `Next file: ${nextFile}`)
             }
 
-
-            // ------------------------------
-            // 3) LABELS PPT / VIDEO
-            // ------------------------------
             const labelUpdates = {}
 
-            // Processa as labels de PPT
             for (const [key, value] of params.entries()) {
                 let m
 
@@ -186,23 +152,21 @@ class PptVideoTcp extends InstanceBase {
                     labelUpdates[`ppt_name_${id}`] = value
                 }
 
-                // Processa as labels de vídeo
                 if ((m = /^video(\d{2})_label$/i.exec(key))) {
                     const id = m[1]
                     labelUpdates[`video_name_${id}`] = value
                 }
             }
 
-            // Atualiza as variáveis se houver alterações
             if (Object.keys(labelUpdates).length > 0) {
                 this.setVariableValues(labelUpdates)
-                this.log('info', `Received labels: ${Object.keys(labelUpdates).join(', ')}`)
+
             }
         })
 
         this.socket.on('error', (err) => {
             this.updateStatus(InstanceStatus.ConnectionFailure, err.message)
-            this.log('error', 'Network error: ' + err.message)
+
         })
     }
 }
