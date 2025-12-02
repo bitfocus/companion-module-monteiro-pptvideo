@@ -1,8 +1,8 @@
 export function getPresetDefinitions() {
-    const presets = {};
+    const presets = {}
 
-    // Função para criar presets básicos com texto e ação customizados
-    function createPreset(id, category, name, text, color, bgcolor, actionId, size = '18') {
+    // Função para criar presets com feedback
+    function createPreset(id, category, name, text, color, bgcolor, actionId, size = 19) {
         presets[`preset_${id}`] = {
             type: 'button',
             category,
@@ -10,91 +10,217 @@ export function getPresetDefinitions() {
             style: {
                 text,
                 size,
-                color,
-                bgcolor,
+                fontWeight: 'bold',
+                color: Number(color),
+                bgcolor: Number(bgcolor),
+                bgcolorVar: true,
+                colorVar: true,
                 show_topbar: false,
             },
             steps: [
                 {
                     down: actionId ? [{ actionId }] : [],
-                    up: []
+                    up: [],
                 },
             ],
-        };
+        }
     }
 
-    // Presets básicos de comando ESC, NEXT, PREVIOUS, EXIT_PPT
+    // ---------------------------------------------------
+    // BOTÕES DE COMANDOS
+    // ---------------------------------------------------
     const commandPresets = [
-        { id: 'esc', name: 'Send ESC Command', text: 'ESC', color: '16777215', bgcolor: '0', actionId: 'ESC' },
-        { id: 'pause', name: 'Send PAUSE Command', text: 'PAUSE', color: '16777215', bgcolor: '0', actionId: 'PAUSE' },
-        { id: 'next', name: 'Send NEXT Command', text: '>\nNext', color: '16777215', bgcolor: '25600', actionId: 'NEXT' },
-        { id: 'previous', name: 'Send PREVIOUS Command', text: '<\nPrevious', color: '16777215', bgcolor: '9109504', actionId: 'PREVIOUS' },
-        { id: 'exit_ppt', name: 'Send exit PPT Command', text: 'PPT\nEXIT', color: '16777215', bgcolor: '0', actionId: 'EXIT_PPT' }
-    ];
-    commandPresets.forEach(({ id, name, text, color, bgcolor, actionId }) =>
-        createPreset(id, 'PPT', name, text, color, bgcolor, actionId)
-    );
+        { id: 'esc', name: 'Send ESC Command', text: 'ESC', color: 0xffffff, bgcolor: 0x000000, actionId: 'ESC' },
+        { id: 'next', name: 'Send NEXT Command', text: '>\nNext', color: 0xffffff, bgcolor: 0x006400, actionId: 'NEXT' },
+        { id: 'previous', name: 'Send PREVIOUS Command', text: '<\nPrev', color: 0xffffff, bgcolor: 0xff0000, actionId: 'PREVIOUS' },
+        { id: 'exit_ppt', name: 'Send exit PPT Command', text: 'PPT\nEXIT', color: 0xffffff, bgcolor: 0x000000, actionId: 'EXIT_PPT' },
+        { id: 'test', name: 'Send TEST Command', text: 'TEST', color: 0xffffff, bgcolor: 0xffa500, actionId: 'TEST' },
+        { id: 'link', name: 'Send LINK Command', text: 'LINK', color: 0xffffff, bgcolor: 0x9400d3, actionId: 'LINK' },
+        { id: 'save', name: 'Send SAVE Command', text: 'SAVE', color: 0xffffff, bgcolor: 0x38AC38, actionId: 'SAVE' },
+        { id: 'save', name: 'Send SAVE Command', text: 'SAVE', color: 0xffffff, bgcolor: 0x38AC38, actionId: 'SAVE' },
+        { id: 'freeze_toggle', name: 'Freeze / Unfreeze Screen', text: '$(PPT_VIDEO:freeze_state)', color: 0x000000, bgcolor: 0x3EE6DB, actionId: 'FREEZE_TOGGLE' },
+    ]
 
-    // Presets de exibição de tempo (HOUR, MINUTE, SECOND, TIMER, SLIDE)
+    commandPresets.forEach((p) =>
+        createPreset(p.id, 'PPT', p.name, p.text, p.color, p.bgcolor, p.actionId)
+    )
+
+    // FREEZE BUTTON FEEDBACK
+    const freezeButtonPreset = presets['preset_freeze_toggle']
+    if (freezeButtonPreset) {
+        freezeButtonPreset.style.size = 16
+        freezeButtonPreset.feedbacks = [
+            {
+                feedbackId: 'freeze_state',
+                callback: () => {
+                    const freezeState = self.getVariableValue('freeze_state')?.toLowerCase()
+                    return freezeState === 'freeze'
+                },
+                style: { bgcolor: 0x3EE6DB, color: 0xffffff }
+            },
+            {
+                feedbackId: 'unfreeze_state',
+                callback: () => {
+                    const freezeState = self.getVariableValue('freeze_state')?.toLowerCase()
+                    return freezeState === 'unfreeze'
+                },
+                style: { bgcolor: 0xff0000, color: 0xffffff }
+            }
+        ]
+    }
+
+    // ---------------------------------------------------
+    // Comandos de Controle de Video
+    // ---------------------------------------------------
+    const videoCommandPresets = [
+        { id: 'pause', name: 'Pause Video', text: 'PAUSE', color: 0x000000, bgcolor: 0xffff10, actionId: 'PAUSE' },
+        { id: 'play', name: 'Play Video', text: 'PLAY', color: 0xffffff, bgcolor: 0x008000, actionId: 'PLAY' },
+        { id: 'stop', name: 'Stop Video', text: 'STOP', color: 0xffffff, bgcolor: 0xff0000, actionId: 'STOP' },
+        { id: 'exit_video', name: 'Exit Video', text: 'VIDEO EXIT', color: 0xffffff, bgcolor: 0x000000, actionId: 'EXIT_VIDEO' }
+    ]
+
+    videoCommandPresets.forEach(p =>
+        createPreset(p.id, 'VIDEO', p.name, p.text, p.color, p.bgcolor, p.actionId)
+    )
+
+    // ---------------------------------------------------
+    // Presets de Display
+    // ---------------------------------------------------
     const displayPresets = [
-        { id: 'hour', name: 'HOUR', text: '$(PPT_VIDEO:timer_hours)', bgcolor: '9109504' },
-        { id: 'minute', name: 'MINUTE', text: '$(PPT_VIDEO:timer_minutes)', bgcolor: '9109504' },
-        { id: 'second', name: 'SECOND', text: '$(PPT_VIDEO:timer_seconds)', bgcolor: '9109504' },
-        { id: 'timer', name: 'TIMER', text: '$(PPT_VIDEO:timer)', bgcolor: '9109504' },
-        { id: 'slide', name: 'SLIDE', text: '$(PPT_VIDEO:slide_info)', bgcolor: '9109504' }
-    ];
-    displayPresets.forEach(({ id, name, text, bgcolor }) =>
-        createPreset(id, 'Display', name, text, '16777215', bgcolor)
-    );
+        { id: 'hour', name: 'HOUR', text: '$(PPT_VIDEO:timer_hours)', bgcolor: 0x8a8a8a },
+        { id: 'minute', name: 'MINUTE', text: '$(PPT_VIDEO:timer_minutes)', bgcolor: 0x8a8a8a },
+        { id: 'second', name: 'SECOND', text: '$(PPT_VIDEO:timer_seconds)', bgcolor: 0x8a8a8a },
+        { id: 'timer', name: 'TIMER', text: '$(PPT_VIDEO:timer)', bgcolor: 0x8a8a8a },
+        { id: 'slide', name: 'SLIDE', text: '$(PPT_VIDEO:slide_info)', bgcolor: 0x8a8a8a },
+        { id: 'remaining', name: 'SLIDE REMAINING', text: '$(PPT_VIDEO:remaining_slide_info)', bgcolor: 0x8a8a8a }
+    ]
 
-    // Função para adicionar presets PPT de 1 a 20
+    displayPresets.forEach((p) => {
+        const size = (p.id === 'slide' || p.id === 'remaining') ? 16 : 20
+        createPreset(p.id, 'Display', p.name, p.text, 0xffffff, p.bgcolor, undefined, size)
+    })
+
+    displayPresets.forEach(p => {
+        const key = `preset_${p.id}`
+        if (presets[key]) {
+            presets[key].feedbacks = presets[key].feedbacks || []
+            presets[key].feedbacks.unshift({
+                feedbackId: 'default_display',
+                style: { bgcolor: 0x8a8a8a, color: 0xffffff }
+            })
+        }
+    })
+
+    // TIMER FEEDBACKS
+    function applyTimerFeedback(id) {
+        const presetKey = `preset_${id}`
+        const p = presets[presetKey]
+        if (!p) return
+        p.feedbacks = [
+            { feedbackId: 'timer_green', style: { bgcolor: 0x00ff00, color: 0x000000 } },
+            { feedbackId: 'timer_yellow', style: { bgcolor: 0xffff00, color: 0x000000 } },
+            { feedbackId: 'timer_red', style: { bgcolor: 0xff0000, color: 0xffffff } },
+        ]
+    }
+
+    applyTimerFeedback('hour')
+    applyTimerFeedback('minute')
+    applyTimerFeedback('second')
+    applyTimerFeedback('timer')
+
+    // SLIDE FEEDBACKS
+    const slidePreset = presets['preset_slide']
+    if (slidePreset) {
+        slidePreset.feedbacks = [
+            { feedbackId: 'slide_green', style: { bgcolor: 0x00ff00, color: 0x000000 } },
+            { feedbackId: 'slide_yellow', style: { bgcolor: 0xffff00, color: 0x000000 } },
+            { feedbackId: 'slide_red', style: { bgcolor: 0xff0000, color: 0xffffff } },
+        ]
+    }
+
+    const slideButtonPreset = presets['preset_slide']
+    if (slideButtonPreset) {
+        slideButtonPreset.feedbacks = [
+            { feedbackId: 'slide_green', style: { bgcolor: 0x00ff00, color: 0x000000 } },
+            { feedbackId: 'slide_yellow', style: { bgcolor: 0xffff00, color: 0x000000 } },
+            { feedbackId: 'slide_red', style: { bgcolor: 0xff0000, color: 0xffffff } },
+        ]
+    }
+
+    const remainingButtonPreset = presets['preset_remaining']
+    if (remainingButtonPreset) {
+        remainingButtonPreset.feedbacks = [
+            { feedbackId: 'slide_green', style: { bgcolor: 0x00ff00, color: 0x000000 } },
+            { feedbackId: 'slide_yellow', style: { bgcolor: 0xffff00, color: 0x000000 } },
+            { feedbackId: 'slide_red', style: { bgcolor: 0xff0000, color: 0xffffff } },
+        ]
+    }
+
+    // ---------------------------------------------------
+    // PRESETS PPT 01–40 (padrão azul → ativo verde)
+    // ---------------------------------------------------
     function addPPTPreset(i) {
-        const id = i < 10 ? `0${i}` : `${i}`;
+        const id = i < 10 ? `0${i}` : `${i}`
+
         createPreset(
             `ppt${id}`,
             'PPT',
             `Send PPT ${id} Command`,
             `PPT\n${id}`,
-            '16777215',
-            '139',
+            0xffffff,
+            0x0000ff,
             `PPT${id}`
-        );
+        )
+
+        presets[`preset_ppt${id}`].feedbacks = [
+            {
+                feedbackId: 'file_active',
+                options: { id: `ppt${id}` },
+                style: { bgcolor: 0x00ff00, color: 0x000000 }, // verde ativo
+            },
+            {
+                feedbackId: 'next_file_active',
+                options: { id: `ppt${id}` },
+                style: { bgcolor: 0xff0000, color: 0xffffff }, // vermelho próximo
+            },
+        ]
+
     }
 
-    // Itera de 1 a 40 e chama a função addPPTPreset para cada valor
-    for (let i = 1; i <= 40; i++) {
-        addPPTPreset(i);
-    }
+    for (let i = 1; i <= 40; i++) addPPTPreset(i)
 
-    // Função para adicionar presets VIDEO de 1 a 20
+    // ---------------------------------------------------
+    // PRESETS VIDEO 01–20 (padrão verde → ativo azul claro)
+    // ---------------------------------------------------
     function addVideoPreset(i) {
-        const id = i < 10 ? `0${i}` : `${i}`;
+        const id = i < 10 ? `0${i}` : `${i}`
+
         createPreset(
             `video${id}`,
             'VIDEO',
             `Send VIDEO ${id} Command`,
             `VIDEO\n${id}`,
-            '16777215',
-            '25600',
+            0xffffff,
+            0x006400,
             `VIDEO${id}`
-        );
+        )
+
+        presets[`preset_video${id}`].feedbacks = [
+            {
+                feedbackId: 'file_active',
+                options: { id: `video${id}` },
+                style: { bgcolor: 0x33ccff, color: 0x000000 }, // azul claro ativo
+            },
+            {
+                feedbackId: 'next_file_active',
+                options: { id: `video${id}` },
+                style: { bgcolor: 0xff0000, color: 0xffffff }, // vermelho próximo
+            },
+        ]
+
     }
 
-    // Itera de 1 a 20 e chama a função addVideoPreset para cada valor
-    for (let i = 1; i <= 20; i++) {
-        addVideoPreset(i);
-    }
+    for (let i = 1; i <= 20; i++) addVideoPreset(i)
 
-    // Adiciona o comando EXIT_VIDEO ao grupo de vídeos
-    createPreset(
-        'exit_video',
-        'VIDEO',
-        'Send exit VIDEO Command',
-        'VIDEO EXIT',
-        '16777215',
-        '0',
-        'EXIT_VIDEO'
-    );
-
-    return presets;
+    return presets
 }
