@@ -99,9 +99,9 @@ export function getFeedbackDefinitions(self) {
 
 
 		// -------------------------------------------------
-        // FEEDBACK FOR "FREEZE" STATE
-        // -------------------------------------------------
-        freeze_state: {
+		// FEEDBACK FOR "FREEZE" STATE
+		// -------------------------------------------------
+		freeze_state: {
 			type: 'boolean',
 			callback: () => {
 				const freezeState = String(self.getVariableValue('freeze_state') || '').toLowerCase()
